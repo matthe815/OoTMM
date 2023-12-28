@@ -1,0 +1,16 @@
+{
+  "name": "@ootmm/cli",
+  "version": "0.0.1",
+  "description": "",
+  "main": "cli.ts",
+  "scripts": {
+    "start": "tsx ./cli.ts",
+    "start:debug": "tsx ./cli.ts --debug --config config.yml",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@ootmm/core": "*"
+  },
+  "author": "Nax",
+  "license": "MIT"
+}

@@ -2,6 +2,15 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { parse as parseYaml } from 'yaml';
 
+let importBuf: string[] = [];
+
+function emit(name: string, filename: string, data: any) {
+  const dir = join(__dirname, '..', 'dist');
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, `${filename}.json`), JSON.stringify(data));
+  importBuf.push(`export { default as ${name} } from './${filename}.json';`);
+}
+
 function loadYaml(name: string): any {
   const file = readFileSync(join(__dirname, name), 'utf8');
   return parseYaml(file);
@@ -58,6 +67,13 @@ const DATA_WORLD = {
   }
 };
 
-const distDir = join(__dirname, '..', 'dist');
-mkdirSync(distDir, { recursive: true });
-writeFileSync(join(distDir, 'data-world.json'), JSON.stringify(DATA_WORLD));
+emit('WORLD', 'data-world', DATA_WORLD);
+emit('SCENES', 'data-scenes', loadYaml('defs/scenes.yml'));
+emit('NPC', 'data-npc', loadYaml('defs/npc.yml'));
+emit('REGIONS', 'data-regions', loadYaml('defs/regions.yml'));
+emit('HINTS', 'data-hints', loadYaml('defs/hints.yml'));
+emit('ENTRANCES', 'data-entrances', loadYaml('defs/entrances.yml'));
+emit('RAW_GI', 'data-gi', loadYaml('defs/gi.yml'));
+emit('RAW_DRAWGI', 'data-drawgi', loadYaml('defs/drawgi.yml'));
+
+writeFileSync(join(__dirname, '..', 'dist', 'index.ts'), importBuf.join('\n') + '\n');

@@ -1,0 +1,14 @@
+{
+  "name": "@ootmm/payload",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "build": "tsx ./build.ts"
+  },
+  "dependencies": {
+    "@ootmm/core": "*",
+    "@ootmm/data": "*"
+  },
+  "author": "Nax",
+  "license": "MIT"
+}
