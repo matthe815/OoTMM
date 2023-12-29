@@ -1,4 +1,4 @@
-import { Game, GAMES } from '../config';
+import { Game, GAMES } from '@ootmm/core/src/config';
 import { gameId } from '../util';
 import { Expr, exprTrue, MM_TIME_SLICES } from './expr';
 import { ExprParser } from './expr-parser';

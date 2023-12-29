@@ -3,6 +3,7 @@ import fs from 'fs/promises';
 import { spawn } from 'child_process';
 import { fileExists, isDev } from '@ootmm/core';
 import { codegen } from './codegen';
+import { makeAssets } from './builder/assets';
 
 async function cloneDependencies() {
   const thirdPartyDir = path.resolve('third_party');
@@ -40,6 +41,7 @@ async function make() {
 
 async function build() {
   await cloneDependencies();
+  await makeAssets();
   await codegen();
   await make();
 }

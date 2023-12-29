@@ -3,7 +3,7 @@ import { Buffer } from 'buffer';
 import { LogicResult } from '../logic';
 import { isEntranceShuffle } from '../logic/helpers';
 import { DATA_GI, DATA_NPC, DATA_SCENES, DATA_REGIONS, DATA_HINTS_POOL, DATA_HINTS, DATA_ENTRANCES } from '../data';
-import { Game } from "../config";
+import { Game } from "@ootmm/core/src/config";
 import { World, WorldCheck } from '../logic/world';
 import { DUNGEONS, Settings, SPECIAL_CONDS, SPECIAL_CONDS_FIELDS } from '../settings';
 import { HINTS_PATHS, HintGossip, WorldHints } from '../logic/hints';

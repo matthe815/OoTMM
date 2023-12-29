@@ -1,4 +1,4 @@
-import { Game } from '../config';
+import { Game } from '@ootmm/core/src/config';
 import { itemByID } from '../items';
 import { Settings } from '../settings';
 import { gameId } from '../util';

@@ -4,7 +4,7 @@ import { Random, shuffle } from '../random';
 import { Patchfile } from '../patch-build/patchfile';
 import { toU32Buffer } from '../util';
 import { DecompressedRoms } from '../decompress';
-import { Game } from '../config';
+import { Game } from '@ootmm/core/src/config';
 
 const OOT_AUDIOSEQ_ADDR = 0x29de0;
 const OOT_AUDIOSEQ_SIZE = 0x4f690;

@@ -1,12 +1,12 @@
 import { GameAddresses } from '../addresses';
-import { Game } from '../config';
+import { Game } from '@ootmm/core/src/config';
 import { DecompressedRoms } from '../decompress';
 import { Options } from '../options';
 import { Patchfile } from '../patch-build/patchfile';
 import { randString } from '../random';
 import { Random, sample } from '../random';
 import { toU32Buffer } from '../util';
-import { png } from '../util/png';
+import { png } from '../../../../payload/builder/png';
 import { Color, ColorArg, ColorRandom, COLORS } from './color';
 import { recolorImage } from '../image';
 import fs from 'fs/promises';

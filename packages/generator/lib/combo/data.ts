@@ -39,7 +39,7 @@ const mapGossip = (game: Game, data: any[]) => {
 
 import hintsOot from '../../data/oot/hints.csv';
 import hintsMm from '../../data/mm/hints.csv';
-import { Game } from './config';
+import { Game } from '@ootmm/core/src/config';
 import { gameId } from './util';
 
 export const DATA_HINTS_POOL = {

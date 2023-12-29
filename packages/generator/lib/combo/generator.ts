@@ -2,7 +2,7 @@ import { Buffer } from 'buffer';
 
 import { build } from "../../../payload/build";
 import { codegen } from "./codegen";
-import { custom } from "./custom";
+import { custom } from "../../../payload/custom";
 import { decompressGames } from "./decompress";
 import { logic } from './logic';
 import { Monitor, MonitorCallbacks } from './monitor';
@@ -14,6 +14,8 @@ import { makeAddresses } from './addresses';
 import { cosmetics } from './cosmetics';
 import { applyRandomSettings } from './settings/random';
 import { exportSettings } from './settings/string';
+
+import { PNG } from 'pngjs/browser';
 
 export type GeneratorOutput = {
   hash: string;

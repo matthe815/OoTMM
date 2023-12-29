@@ -1,11 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { Options } from '../options';
-
-let PNG: any = null;
-if (!process.env.ROLLUP) {
-  PNG = require('pngjs').PNG;
-};
+import { PNG } from 'pngjs';
 
 const rawPng = async (data: Buffer) => new Promise<Buffer>((resolve, reject) => {
   const png = new PNG({
@@ -72,30 +67,25 @@ const parsePngBitmask = async (data: Buffer) => {
   return bitmask;
 };
 
-export const png = async (opts: Options, filename: string, mode: 'rgba32' | 'rgba16' | 'i4' | 'bitmask') => {
-  if (process.env.ROLLUP) {
-    return opts.fetch!(`${filename}.bin`);
-  } else {
-    const data = await fs.readFile(__dirname + '/../../../data/assets/' + filename + '.png');
-    let pngBuffer: Buffer;
-    switch (mode) {
-    case 'rgba32':
-      pngBuffer = await parsePngRgba32(data);
-      break;
-    case 'rgba16':
-      pngBuffer = await parsePngRgba16(data);
-      break;
-    case 'i4':
-      pngBuffer = await parsePngI4(data);
-      break;
-    case 'bitmask':
-      pngBuffer = await parsePngBitmask(data);
-      break;
-    }
+export type TextureFormat = 'rgba32' | 'rgba16' | 'i4' | 'bitmask';
 
-    const outPath = path.resolve(__dirname, '../../../build/assets', filename + '.bin');
-    await fs.mkdir(path.dirname(outPath), { recursive: true });
-    await fs.writeFile(outPath, pngBuffer);
-    return pngBuffer;
+export const png = async (filename: string, mode: TextureFormat) => {
+  const data = await fs.readFile(path.join(__dirname, '..', 'assets', filename + '.png'));
+  let pngBuffer: Buffer;
+  switch (mode) {
+  case 'rgba32':
+    pngBuffer = await parsePngRgba32(data);
+    break;
+  case 'rgba16':
+    pngBuffer = await parsePngRgba16(data);
+    break;
+  case 'i4':
+    pngBuffer = await parsePngI4(data);
+    break;
+  case 'bitmask':
+    pngBuffer = await parsePngBitmask(data);
+    break;
   }
+
+  return pngBuffer;
 };

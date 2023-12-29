@@ -2,26 +2,25 @@ import path from 'path';
 import fs from 'fs/promises';
 import { Buffer } from 'buffer';
 
-import { Game, DATA_FILES } from '../config';
-import { DmaData } from '../dma';
-import { splitObject } from './split';
-import { arrayToIndexMap, toU32Buffer } from '../util';
-import { CodeGen } from '../../../../core/src/codegen';
-import { DecompressedRoms } from '../decompress';
-import { Monitor } from '../monitor';
-import { KeepFile } from './keep';
-import { png } from '../util/png';
-import { font } from './font';
-import { raw } from './raw';
-import { Options } from '../options';
-import { Patchfile } from '../patch-build/patchfile';
-import { grayscale } from '../image';
+import { Game } from '@ootmm/core';
+import { FILES } from '@ootmm/data';
+import { DmaData } from '../../generator/lib/combo/dma';
+import { splitObject } from '@ootmm/core/src/split';
+import { arrayToIndexMap, toU32Buffer } from '../../generator/lib/combo/util';
+import { CodeGen } from '@ootmm/core/src/codegen';
+import { DecompressedRoms } from '../../generator/lib/combo/decompress';
+import { Monitor } from '../../generator/lib/combo/monitor';
+import { KeepFile } from './custom/keep';
+import { png } from './png';
+import { font } from './custom/font';
+import { raw } from './custom/raw';
+import { Options } from '../../generator/lib/combo/options';
+import { Patchfile } from '../../generator/lib/combo/patch-build/patchfile';
+import { grayscale } from '../../generator/lib/combo/image';
 
-const FILES_TO_INDEX_OOT = arrayToIndexMap(DATA_FILES.oot);
-const FILES_TO_INDEX_MM = arrayToIndexMap(DATA_FILES.mm);
 const FILES_TO_INDEX = {
-  oot: FILES_TO_INDEX_OOT,
-  mm: FILES_TO_INDEX_MM,
+  oot: arrayToIndexMap(FILES.oot),
+  mm: arrayToIndexMap(FILES.mm),
 };
 
 type CustomEntry = {

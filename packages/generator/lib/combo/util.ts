@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import { Game } from './config';
+import { Game } from '@ootmm/core/src/config';
 
 export type Optional<T> = T extends {} ? {[K in keyof T]?: T[K]} : T | undefined;
 

@@ -1,5 +1,5 @@
-import { Options } from "../options";
-import { png } from "../util/png";
+import { Options } from "../../generator/lib/combo/options";
+import { png } from "../../generator/lib/combo/util/png";
 
 export const font = async (opts: Options, filename: string) => {
   const original = await png(opts, filename, 'i4');

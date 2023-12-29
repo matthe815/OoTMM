@@ -1,7 +1,7 @@
 import { Buffer } from 'buffer';
 
 import { Options } from '../options';
-import { Game, CONFIG } from "../config";
+import { Game, CONFIG } from "@ootmm/core/src/config";
 import { Patchfile } from './patchfile';
 import { Addresses, GameAddresses } from '../addresses';
 import { PATCH_GROUP_VALUES, PatchGroup } from '../../../../core/src/patch-group';

@@ -15,7 +15,7 @@ import JSZip from 'jszip';
 
 import { build as comboBuild } from '../../payload/build';
 import { codegen as comboCodegen } from './combo/codegen';
-import { customAssetsKeep, customFiles } from './combo/custom';
+import { customAssetsKeep, customFiles } from '../../payload/custom';
 import { Monitor } from './combo/monitor';
 import { DEFAULT_SETTINGS } from './combo';
 import { cosmeticsAssets } from './combo/cosmetics';

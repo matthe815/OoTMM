@@ -1,4 +1,4 @@
-import { CONFIG, Game } from "./config";
+import { CONFIG, Game } from "@ootmm/core/src/config";
 import { DecompressedRoms } from "./decompress";
 
 type VRamEntry = {

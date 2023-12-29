@@ -1,4 +1,4 @@
-import { Game } from "../config";
+import { Game } from "@ootmm/core/src/config";
 import { toU32BufferLE } from "../util";
 
 const REVISION = 0;

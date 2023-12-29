@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 
 import { CodeGen } from '../../core/src/codegen';
 import { decompressGame } from '../lib/combo/decompress';
-import { CONFIG } from '../lib/combo/config';
+import { CONFIG } from '@ootmm/core/src/config';
 import { mkdir } from 'fs';
 
 const OOT_GENERIC_GROTTOS = [

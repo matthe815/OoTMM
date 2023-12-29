@@ -2,7 +2,7 @@ import { DUNGEONS_REGIONS, World } from './world';
 import { Analysis } from './analysis';
 import { Random, sample, shuffle, randomInt } from '../random';
 import { Settings } from '../settings';
-import { Game } from '../config';
+import { Game } from '@ootmm/core/src/config';
 import { Monitor } from '../monitor';
 import { Pathfinder } from './pathfind';
 import { ItemPlacement } from './solve';

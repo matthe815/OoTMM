@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 
-import { Options } from '../options';
+import { Options } from '../../generator/lib/combo/options';
 
 export const raw = async (opts: Options, filename: string) => {
   if (process.env.ROLLUP) {

@@ -16,6 +16,10 @@ function loadYaml(name: string): any {
   return parseYaml(file);
 }
 
+function loadTxt(name: string): string {
+  return readFileSync(join(__dirname, name), 'utf8');
+}
+
 const DATA_WORLD = {
   oot: {
     overworld: loadYaml('world/oot/overworld.yml'),
@@ -67,6 +71,11 @@ const DATA_WORLD = {
   }
 };
 
+const DATA_FILES = {
+  oot: loadTxt('files/files-oot.txt').trim().split('\n'),
+  mm: loadTxt('files/files-mm.txt').trim().split('\n'),
+};
+
 emit('WORLD', 'data-world', DATA_WORLD);
 emit('SCENES', 'data-scenes', loadYaml('defs/scenes.yml'));
 emit('NPC', 'data-npc', loadYaml('defs/npc.yml'));
@@ -75,5 +84,6 @@ emit('HINTS', 'data-hints', loadYaml('defs/hints.yml'));
 emit('ENTRANCES', 'data-entrances', loadYaml('defs/entrances.yml'));
 emit('RAW_GI', 'data-gi', loadYaml('defs/gi.yml'));
 emit('RAW_DRAWGI', 'data-drawgi', loadYaml('defs/drawgi.yml'));
+emit('FILES', 'data-files', DATA_FILES);
 
 writeFileSync(join(__dirname, '..', 'dist', 'index.ts'), importBuf.join('\n') + '\n');

@@ -1,7 +1,7 @@
 import { Buffer } from 'buffer';
 
 import { compressFile } from './compress';
-import { CONFIG, GAMES, Game } from './config';
+import { CONFIG, GAMES, Game } from '@ootmm/core/src/config';
 import { DecompressedRoms } from './decompress';
 import { DmaData, DmaDataRecord } from './dma';
 import { Monitor } from './monitor';
