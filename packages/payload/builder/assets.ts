@@ -1,13 +1,19 @@
 import path from 'path';
 import fs from 'fs/promises';
+import { DecompressedRoms, fileExists } from '@ootmm/core';
 
 import { TextureFormat, png } from './png';
+
+function filenameToDefine(filename: string) {
+  return filename.replace(/\.[^/.]+$/, "").replace(/\//g, '_').toUpperCase();
+}
 
 type FileRecord = {
   filename: string | null;
   vrom: number;
   size: number;
   compressed: boolean;
+  defineBase: string;
 }
 
 class AssetsBuilder {
@@ -18,13 +24,14 @@ class AssetsBuilder {
 
   }
 
-  private async makeRecord(filename: string | null, size: number, compressed: boolean) {
+  private async makeRecord(defineBase: string, filename: string | null, size: number, compressed: boolean) {
     const sizeAligned = (size + 0xf) & ~0xf;
     const record: FileRecord = {
       filename,
       vrom: this.vrom,
       size: sizeAligned,
       compressed,
+      defineBase,
     };
     this.vrom += sizeAligned;
     this.files.push(record);
@@ -43,7 +50,7 @@ class AssetsBuilder {
 
     /* Create the record */
     if (record) {
-      await this.makeRecord(filename, data.length, !!compressed);
+      await this.makeRecord(filenameToDefine(filename), filename, data.length, !!compressed);
     }
   }
 
@@ -51,6 +58,25 @@ class AssetsBuilder {
     const data = await png(filename, format);
     await this.importData(data, filename + '.bin', record, true);
     return data;
+  }
+
+  async emitReceipt() {
+    const data = {
+      files: this.files,
+    };
+
+    const outPath = path.join(__dirname, '..', 'custom.json');
+    const dataStr = JSON.stringify(data);
+    let shouldEmit = true;
+    if (await fileExists(outPath)) {
+      const previousDataStr = await fs.readFile(outPath, 'utf8');
+      if (previousDataStr === dataStr) {
+        shouldEmit = false;
+      }
+    }
+    if (shouldEmit) {
+      await fs.writeFile(outPath, dataStr);
+    }
   }
 }
 
@@ -78,9 +104,12 @@ const TEXTURES: {[k: string]: TextureFormat} = {
   'pots/top_bosskey': 'rgba16',
 };
 
-export async function makeAssets() {
+export async function makeAssets(decompressedRoms: DecompressedRoms | null) {
   const builder = new AssetsBuilder();
   for (const [filename, format] of Object.entries(TEXTURES)) {
     await builder.importTexture(filename, format, true);
+  }
+  if (decompressedRoms) {
+    await builder.emitReceipt();
   }
 }

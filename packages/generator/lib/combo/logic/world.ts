@@ -4,7 +4,7 @@ import { Expr, exprTrue, MM_TIME_SLICES } from './expr';
 import { ExprParser } from './expr-parser';
 import { DATA_POOL, DATA_MACROS, DATA_WORLD, DATA_REGIONS, DATA_ENTRANCES_POOL, DATA_HINTS_POOL } from '../data';
 import { DUNGEONS, SETTINGS, Settings } from '../settings';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { defaultPrices } from './price';
 import { Item, itemByID, ItemHelpers, Items } from '../items';
 import { Random } from '../random';

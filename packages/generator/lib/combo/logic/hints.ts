@@ -3,7 +3,7 @@ import { Analysis } from './analysis';
 import { Random, sample, shuffle, randomInt } from '../random';
 import { Settings } from '../settings';
 import { Game } from '@ootmm/core/src/config';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { Pathfinder } from './pathfind';
 import { ItemPlacement } from './solve';
 import { Location, locationData, makeLocation } from './locations';

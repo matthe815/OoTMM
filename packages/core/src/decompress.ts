@@ -3,7 +3,7 @@ import CRC32 from 'crc-32';
 import { Buffer } from 'buffer';
 
 import { DmaData } from './dma';
-import { CONFIG, Game, GAMES } from '@ootmm/core/src/config';
+import { CONFIG, Game, GAMES } from './config';
 import { Monitor } from './monitor';
 
 export const copyFile = async (src: Buffer, dst: Buffer, compressed: boolean) => {

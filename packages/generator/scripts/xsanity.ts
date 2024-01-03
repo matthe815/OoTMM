@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 
 import { CodeGen } from '../../core/src/codegen';
-import { decompressGame } from '../lib/combo/decompress';
+import { decompressGame } from '@ootmm/core/src/decompress';
 import { CONFIG } from '@ootmm/core/src/config';
 import { mkdir } from 'fs';
 

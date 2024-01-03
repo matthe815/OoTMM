@@ -5,7 +5,7 @@ import { Glitch, GLITCHES, SETTINGS, Settings, Trick, TRICKS } from '../settings
 import { HintGossipFoolish, HintGossipPath, HintGossipItemExact, HintGossipItemRegion, Hints, HINTS_PATHS } from './hints';
 import { World, WORLD_FLAGS } from './world';
 import { itemName } from '../names';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { Analysis } from './analysis';
 import { regionName } from '../regions';
 import { isShuffled } from './is-shuffled'

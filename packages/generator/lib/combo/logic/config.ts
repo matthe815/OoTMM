@@ -1,6 +1,6 @@
 import { Confvar } from '@ootmm/core/src/confvars';
 import { Items, PlayerItems, itemByID, makePlayerItem } from '../items';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { Random } from '../random';
 import { Settings } from '../settings';
 import { countMapAdd, countMapRemove } from '../util';

@@ -2,9 +2,9 @@ import { Buffer } from 'buffer';
 
 import { compressFile } from './compress';
 import { CONFIG, GAMES, Game } from '@ootmm/core/src/config';
-import { DecompressedRoms } from './decompress';
-import { DmaData, DmaDataRecord } from './dma';
-import { Monitor } from './monitor';
+import { DecompressedRoms } from '@ootmm/core/src/decompress';
+import { DmaData, DmaDataRecord } from '@ootmm/core/src/dma';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { Patchfile } from './patch-build/patchfile';
 
 const rol = (v: number, b: number) => (((v << b) | (v >>> (32 - b))) & 0xffffffff) >>> 0;

@@ -4,12 +4,12 @@ import { Buffer } from 'buffer';
 
 import { Game } from '@ootmm/core';
 import { FILES } from '@ootmm/data';
-import { DmaData } from '../../generator/lib/combo/dma';
+import { DmaData } from '@ootmm/core/src/dma';
 import { splitObject } from '@ootmm/core/src/split';
 import { arrayToIndexMap, toU32Buffer } from '../../generator/lib/combo/util';
 import { CodeGen } from '@ootmm/core/src/codegen';
-import { DecompressedRoms } from '../../generator/lib/combo/decompress';
-import { Monitor } from '../../generator/lib/combo/monitor';
+import { DecompressedRoms } from '@ootmm/core/src/decompress';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { KeepFile } from './custom/keep';
 import { png } from './png';
 import { font } from './custom/font';

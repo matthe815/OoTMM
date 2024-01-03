@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs/promises';
 import { spawn } from 'child_process';
-import { fileExists, isDev } from '@ootmm/core';
+import { DecompressedRoms, Monitor, decompressGames, fileExists, isDev } from '@ootmm/core';
 import { codegen } from './codegen';
 import { makeAssets } from './builder/assets';
 
@@ -40,8 +40,24 @@ async function make() {
 }
 
 async function build() {
+  /* Load roms (if they exist) */
+  const monitor = new Monitor({ onLog: () => {} });
+  const romDir = path.join(__dirname, '..', '..', 'roms');
+  const ootPath = path.join(romDir, 'oot.z64');
+  const mmPath = path.join(romDir, 'mm.z64');
+  const ootExists = await fileExists(ootPath);
+  const mmExists = await fileExists(mmPath);
+  let decompressedRoms: DecompressedRoms | null = null;
+  if (ootExists && mmExists) {
+    const [oot, mm] = await Promise.all([
+      fs.readFile(ootPath),
+      fs.readFile(mmPath),
+    ]);
+    decompressedRoms = await decompressGames(monitor, { oot, mm });
+  }
+
   await cloneDependencies();
-  await makeAssets();
+  await makeAssets(decompressedRoms);
   await codegen();
   await make();
 }

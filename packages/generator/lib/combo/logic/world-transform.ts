@@ -2,7 +2,7 @@ import { Confvar } from '@ootmm/core/src/confvars';
 import { DATA_POOL } from '../data';
 import { Item, ItemGroups, ItemHelpers, Items, PlayerItem, PlayerItems, itemByID, makePlayerItem } from '../items';
 import { ItemID } from '../items/defs';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { sample, Random, randomInt } from '../random';
 import { Settings } from '../settings';
 import { countMapAdd, gameId } from '../util';

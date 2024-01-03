@@ -1,9 +1,9 @@
 import { GameAddresses } from "../addresses";
 import { BuildOutput } from "../../../../payload/build";
 import { CONFIG, CUSTOM_ADDR, GAMES } from "@ootmm/core/src/config";
-import { DecompressedRoms } from "../decompress";
+import { DecompressedRoms } from "@ootmm/core/src/decompress";
 import { LogicResult } from "../logic";
-import { Monitor } from "../monitor";
+import { Monitor } from "@ootmm/core/src/monitor";
 import { Settings } from "../settings";
 import { Patcher } from "./patcher";
 import { Patchfile } from "./patchfile";

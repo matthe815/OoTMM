@@ -1,3 +1,4 @@
+import { promises as fs } from 'fs';
 import path from 'path';
 import { PATCH_GROUP_VALUES, CONFVARS_VALUES, PRICE_RANGES, GI, DRAWGI, CodeGen } from '@ootmm/core';
 import { ENTRANCES, NPC, SCENES } from '@ootmm/data';
@@ -107,10 +108,21 @@ async function genDrawGI() {
   await cgSource.emit();
 }
 
+async function genCustom() {
+  const data = JSON.parse(await fs.readFile(path.resolve('custom.json'), 'utf8'));
+  const cg = new CodeGen(path.resolve('build', 'include', 'combo', 'custom.h'), "GENERATED_CUSTOM_H");
+  for (const f of data.files) {
+    const { defineBase } = f;
+    cg.define(defineBase + '_VROM', f.vrom);
+  }
+  await cg.emit();
+}
+
 export async function codegen() {
   return Promise.all([
     genGI(),
     genDrawGI(),
+    genCustom(),
     codegenFile(SCENES,               "SCE",      "scenes.h",       "GENERATED_SCENES_H"),
     codegenFile(NPC,                  "NPC",      "npc.h",          "GENERATED_NPC_H"),
     codegenFile(ENTRANCES,            "ENTR",     "entrances.h",    "GENERATED_ENTRANCES_H"),

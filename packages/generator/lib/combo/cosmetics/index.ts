@@ -1,6 +1,6 @@
 import { GameAddresses } from '../addresses';
 import { Game } from '@ootmm/core/src/config';
-import { DecompressedRoms } from '../decompress';
+import { DecompressedRoms } from '@ootmm/core/src/decompress';
 import { Options } from '../options';
 import { Patchfile } from '../patch-build/patchfile';
 import { randString } from '../random';

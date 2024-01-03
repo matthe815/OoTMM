@@ -1,5 +1,5 @@
 import { ItemHelpers, Items } from '../items';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { Settings } from '../settings';
 import { Location, MM_MERCHANTS, MM_SCRUBS, ONE_TIME_SHOP_CHECKS, OOT_ONE_TIME_SCRUBS, isLocationChestFairy, isLocationOtherFairy, makeLocation } from './locations';
 import { World } from './world';

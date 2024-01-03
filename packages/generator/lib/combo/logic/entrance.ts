@@ -2,7 +2,7 @@ import { Random, sample, shuffle } from '../random';
 import { Settings } from '../settings';
 import { DUNGEONS_REGIONS, ExprMap, ExprParsers, World, WorldEntrance, cloneWorld } from './world';
 import { Pathfinder } from './pathfind';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { LogicEntranceError, LogicError } from './error';
 import { Expr, exprAge, exprAnd, exprFalse, exprTrue } from './expr';
 import { Location, makeLocation } from './locations';

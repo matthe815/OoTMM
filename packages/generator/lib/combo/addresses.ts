@@ -1,5 +1,5 @@
 import { CONFIG, Game } from "@ootmm/core/src/config";
-import { DecompressedRoms } from "./decompress";
+import { DecompressedRoms } from "@ootmm/core/src/decompress";
 
 type VRamEntry = {
   vstart: number;

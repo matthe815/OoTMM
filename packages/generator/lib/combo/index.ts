@@ -2,7 +2,7 @@ import { Buffer } from 'buffer';
 
 import { options, OptionsInput } from './options';
 import { Generator, GeneratorOutput } from './generator';
-import { Monitor, MonitorCallbacks } from './monitor';
+import { Monitor, MonitorCallbacks } from '@ootmm/core/src/monitor';
 import { worldState } from './logic';
 import { itemName } from './names';
 import { isShuffled } from './logic/is-shuffled';

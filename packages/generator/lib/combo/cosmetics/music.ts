@@ -3,7 +3,7 @@ import JSZip from 'jszip';
 import { Random, shuffle } from '../random';
 import { Patchfile } from '../patch-build/patchfile';
 import { toU32Buffer } from '../util';
-import { DecompressedRoms } from '../decompress';
+import { DecompressedRoms } from '@ootmm/core/src/decompress';
 import { Game } from '@ootmm/core/src/config';
 
 const OOT_AUDIOSEQ_ADDR = 0x29de0;

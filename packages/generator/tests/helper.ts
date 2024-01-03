@@ -21,7 +21,7 @@ glob.sync(__dirname + "/../data/**/*.csv").forEach(mockCSV);
 
 import { Optional } from "../lib/combo/util";
 import { DEFAULT_SETTINGS, Settings } from "../lib/combo/settings";
-import { Monitor } from "../lib/combo/monitor";
+import { Monitor } from "@ootmm/core/src/monitor";
 import { solvedWorldState } from "../lib/combo/logic";
 import { makeCosmetics } from "../lib/combo";
 import { makeRandomSettings } from "../lib/combo/settings/random";

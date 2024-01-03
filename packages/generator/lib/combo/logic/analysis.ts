@@ -2,7 +2,7 @@ import { Random, shuffle } from '../random';
 import { Settings } from '../settings';
 import { World } from './world';
 import { Pathfinder, PathfinderState } from './pathfind';
-import { Monitor } from '../monitor';
+import { Monitor } from '@ootmm/core/src/monitor';
 import { cloneDeep } from 'lodash';
 import { isLocationRenewable, makePlayerLocations, Location, makeLocation, locationData } from './locations';
 import { ItemPlacement } from './solve';
