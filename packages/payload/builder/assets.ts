@@ -3,6 +3,8 @@ import fs from 'fs/promises';
 import { DecompressedRoms, fileExists } from '@ootmm/core';
 
 import { TextureFormat, png } from './png';
+import { KeepFile } from './keep';
+import { font } from './font';
 
 function filenameToDefine(filename: string) {
   return filename.replace(/\.[^/.]+$/, "").replace(/\//g, '_').toUpperCase();
@@ -14,10 +16,13 @@ type FileRecord = {
   size: number;
   compressed: boolean;
   defineBase: string;
+  defineExtras?: {[k: string]: number};
+  objectId?: number;
 }
 
 class AssetsBuilder {
   private vrom = 0x08000000;
+  private objectId = 0x2000;
   private files: FileRecord[] = [];
 
   constructor() {
@@ -50,7 +55,7 @@ class AssetsBuilder {
 
     /* Create the record */
     if (record) {
-      await this.makeRecord(filenameToDefine(filename), filename, data.length, !!compressed);
+      return await this.makeRecord(filenameToDefine(filename), filename, data.length, !!compressed);
     }
   }
 
@@ -58,6 +63,21 @@ class AssetsBuilder {
     const data = await png(filename, format);
     await this.importData(data, filename + '.bin', record, true);
     return data;
+  }
+
+  async importFile(filename: string, record: boolean, compressed?: boolean) {
+    const data = await fs.readFile(path.join(__dirname, '..', 'assets', filename));
+    await this.importData(data, filename, record, compressed);
+  }
+
+  async importObject(filename: string, args: number[]) {
+    const data = await fs.readFile(path.join(__dirname, '..', 'assets', filename));
+    const record = (await this.importData(data, filename, true, true))!;
+    record.objectId = this.objectId++;
+    record.defineExtras = {};
+    for (let i = 0; i < args.length; i++) {
+      record.defineExtras[i.toString()] = args[i];
+    }
   }
 
   async emitReceipt() {
@@ -81,27 +101,47 @@ class AssetsBuilder {
 }
 
 const TEXTURES: {[k: string]: TextureFormat} = {
-  'chests/front_major': 'rgba16',
-  'chests/side_major': 'rgba16',
-  'chests/front_key': 'rgba16',
-  'chests/side_key': 'rgba16',
-  'chests/front_spider': 'rgba16',
-  'chests/side_spider': 'rgba16',
-  'chests/front_fairy': 'rgba16',
-  'chests/side_fairy': 'rgba16',
-  'chests/front_heart': 'rgba16',
-  'chests/side_heart': 'rgba16',
-  'pots/side_major': 'rgba16',
-  'pots/top_major': 'rgba16',
-  'pots/side_spider': 'rgba16',
-  'pots/top_spider': 'rgba16',
-  'pots/side_key': 'rgba16',
-  'pots/side_fairy': 'rgba16',
-  'pots/top_fairy': 'rgba16',
-  'pots/side_heart': 'rgba16',
-  'pots/top_heart': 'rgba16',
-  'pots/side_bosskey': 'rgba16',
-  'pots/top_bosskey': 'rgba16',
+  'chests/major_front': 'rgba16',
+  'chests/major_side': 'rgba16',
+  'chests/key_front': 'rgba16',
+  'chests/key_side': 'rgba16',
+  'chests/spider_front': 'rgba16',
+  'chests/spider_side': 'rgba16',
+  'chests/fairy_front': 'rgba16',
+  'chests/fairy_side': 'rgba16',
+  'chests/heart_front': 'rgba16',
+  'chests/heart_side': 'rgba16',
+  'pots/major_side': 'rgba16',
+  'pots/major_top': 'rgba16',
+  'pots/spider_side': 'rgba16',
+  'pots/spider_top': 'rgba16',
+  'pots/key_side': 'rgba16',
+  'pots/fairy_side': 'rgba16',
+  'pots/fairy_top': 'rgba16',
+  'pots/heart_side': 'rgba16',
+  'pots/heart_top': 'rgba16',
+  'pots/bosskey_side': 'rgba16',
+  'pots/bosskey_top': 'rgba16',
+};
+
+const OBJECTS: {[k: string]: number[]} = {
+  'objects/triforce.zobj': [0x6000a30],
+  'objects/btn_a.zobj': [0x6000da0],
+  'objects/btn_c_horizontal.zobj': [0x6000e10],
+  'objects/btn_c_vertical.zobj': [0x6000960],
+};
+
+const KEEP_TEXTURES: {[k: string]: string} = {
+  DPAD: 'dpad',
+  ICON_KEY: 'icons/key',
+  ICON_BOSS_KEY: 'icons/boss_key',
+  ICON_MAP: 'icons/map',
+  ICON_COMPASS: 'icons/compass',
+  ICON_FAIRY: 'icons/fairy',
+  ICON_SKULL: 'icons/skull',
+  ICON_TRIFORCE: 'icons/triforce',
+  ICON_RUPEE: 'icons/rupee',
+  ICON_COIN: 'icons/coin',
 };
 
 export async function makeAssets(decompressedRoms: DecompressedRoms | null) {
@@ -109,6 +149,29 @@ export async function makeAssets(decompressedRoms: DecompressedRoms | null) {
   for (const [filename, format] of Object.entries(TEXTURES)) {
     await builder.importTexture(filename, format, true);
   }
+
+  for (const [filename, args] of Object.entries(OBJECTS)) {
+    await builder.importObject(filename, args);
+  }
+
+  /* Keep */
+  const keep = new KeepFile();
+  const keepOffsets: {[k: string]: number} = {};
+  const dataFont = await font('font');
+  keepOffsets['FONT'] = keep.addData(dataFont);
+  for (const [name, filename] of Object.entries(KEEP_TEXTURES)) {
+    const data = await png(filename, 'rgba32');
+    keepOffsets[name] = keep.addData(data);
+  }
+  const dataKeep = keep.pack();
+  const keepRecord = await builder.importData(dataKeep, 'keep', true, true);
+  keepRecord!.defineExtras = keepOffsets;
+
+  /* MQ */
+  await builder.importFile('mq/rooms.bin', true, false);
+  await builder.importFile('mq/scenes.bin', true, false);
+  await builder.importFile('mq/maps.bin', true, true);
+
   if (decompressedRoms) {
     await builder.emitReceipt();
   }

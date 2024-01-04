@@ -156,28 +156,28 @@ static void loadTexture(int csmcPotId)
     switch (csmcPotId)
     {
     case CSMC_POT_MAJOR:
-        patchTextureList(kTexMajorSide, CUSTOM_POT_MAJOR_SIDE_ADDR);
-        patchTextureList(kTexMajorTop, CUSTOM_POT_MAJOR_TOP_ADDR);
+        patchTextureList(kTexMajorSide, CUSTOM_POTS_MAJOR_SIDE_VROM);
+        patchTextureList(kTexMajorTop, CUSTOM_POTS_MAJOR_TOP_VROM);
         break;
     case CSMC_POT_SPIDER:
-        patchTextureList(kTexSpiderSide, CUSTOM_POT_SPIDER_SIDE_ADDR);
-        patchTextureList(kTexSpiderTop, CUSTOM_POT_SPIDER_TOP_ADDR);
+        patchTextureList(kTexSpiderSide, CUSTOM_POTS_SPIDER_SIDE_VROM);
+        patchTextureList(kTexSpiderTop, CUSTOM_POTS_SPIDER_TOP_VROM);
         break;
     case CSMC_POT_FAIRY:
-        patchTextureList(kTexFairySide, CUSTOM_POT_FAIRY_SIDE_ADDR);
-        patchTextureList(kTexFairyTop, CUSTOM_POT_FAIRY_TOP_ADDR);
+        patchTextureList(kTexFairySide, CUSTOM_POTS_FAIRY_SIDE_VROM);
+        patchTextureList(kTexFairyTop, CUSTOM_POTS_FAIRY_TOP_VROM);
         break;
     case CSMC_POT_KEY:
-        patchTextureList(kTexKeySide, CUSTOM_POT_KEY_SIDE_ADDR);
-        patchTextureList(kTexKeyTop, CUSTOM_POT_SPIDER_TOP_ADDR);
+        patchTextureList(kTexKeySide, CUSTOM_POTS_KEY_SIDE_VROM);
+        patchTextureList(kTexKeyTop, CUSTOM_POTS_SPIDER_TOP_VROM);
         break;
     case CSMC_POT_HEART:
-        patchTextureList(kTexHeartSide, CUSTOM_POT_HEART_SIDE_ADDR);
-        patchTextureList(kTexHeartTop, CUSTOM_POT_HEART_TOP_ADDR);
+        patchTextureList(kTexHeartSide, CUSTOM_POTS_HEART_SIDE_VROM);
+        patchTextureList(kTexHeartTop, CUSTOM_POTS_HEART_TOP_VROM);
         break;
     case CSMC_POT_BOSSKEY:
-        patchTextureList(kTexBossKeySide, CUSTOM_POT_BOSSKEY_SIDE_ADDR);
-        patchTextureList(kTexBossKeyTop, CUSTOM_POT_BOSSKEY_TOP_ADDR);
+        patchTextureList(kTexBossKeySide, CUSTOM_POTS_BOSSKEY_SIDE_VROM);
+        patchTextureList(kTexBossKeyTop, CUSTOM_POTS_BOSSKEY_TOP_VROM);
         break;
     }
 }

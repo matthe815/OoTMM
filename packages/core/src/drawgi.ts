@@ -25,7 +25,7 @@ for (let i = 0; i < RAW_DRAWGI.length; ++i) {
   if (v.params) {
     for (const p of v.params) {
       if (typeof p === 'string') {
-        params.push(`CUSTOM_OBJECT_${p}`);
+        params.push(`CUSTOM_${p}`);
       } else {
         params.push(`0x${p.toString(16)}`);
       }

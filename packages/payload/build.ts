@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs/promises';
 import { spawn } from 'child_process';
 import { DecompressedRoms, Monitor, decompressGames, fileExists, isDev } from '@ootmm/core';
-import { codegen } from './codegen';
+import { codegen } from './builder/codegen';
 import { makeAssets } from './builder/assets';
 
 async function cloneDependencies() {

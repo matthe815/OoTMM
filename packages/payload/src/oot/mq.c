@@ -184,7 +184,7 @@ static void mqPatchCollisions(GameState_Play* play, MqSceneHeader* scene, void* 
         chunk = 0;
         while (count)
         {
-            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_ADDR, (scene->polyOffset + chunk * sizeof(buffer)), sizeof(buffer));
+            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_VROM, (scene->polyOffset + chunk * sizeof(buffer)), sizeof(buffer));
             for (int i = 0; i < sizeof(buffer) / sizeof(MqPolyPatch); ++i)
             {
                 MqPolyPatch* p;
@@ -205,7 +205,7 @@ static void mqPatchCollisions(GameState_Play* play, MqSceneHeader* scene, void* 
         chunk = 0;
         while (count)
         {
-            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_ADDR, (scene->polyTypeOffset + chunk * sizeof(buffer)), sizeof(buffer));
+            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_VROM, (scene->polyTypeOffset + chunk * sizeof(buffer)), sizeof(buffer));
             for (int i = 0; i < sizeof(buffer) / sizeof(MqPolyTypePatch); ++i)
             {
                 MqPolyTypePatch* p;
@@ -236,7 +236,7 @@ static int findMqOverrideScene(GameState_Play* play, MqSceneHeader* dst)
     if (!isEnabledMq(dungeonId))
         return 0;
 
-    comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_ADDR, 0, sizeof(buffer));
+    comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_VROM, 0, sizeof(buffer));
     headerCount = *(u32*)buffer;
     headerPage = 0;
     headerIndex = 1;
@@ -254,7 +254,7 @@ static int findMqOverrideScene(GameState_Play* play, MqSceneHeader* dst)
         {
             headerIndex = 0;
             headerPage++;
-            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_ADDR, headerPage * sizeof(buffer), sizeof(buffer));
+            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_VROM, headerPage * sizeof(buffer), sizeof(buffer));
         }
     }
 
@@ -276,7 +276,7 @@ static int findMqOverrideRoom(GameState_Play* play, MqRoomHeader* dst)
     if (!isEnabledMq(dungeonId))
         return 0;
 
-    comboDmaLoadFilePartial(buffer, CUSTOM_MQ_ROOMS_ADDR, 0, sizeof(buffer));
+    comboDmaLoadFilePartial(buffer, CUSTOM_MQ_ROOMS_VROM, 0, sizeof(buffer));
     headerCount = *(u32*)buffer;
     headerPage = 0;
     headerIndex = 1;
@@ -294,7 +294,7 @@ static int findMqOverrideRoom(GameState_Play* play, MqRoomHeader* dst)
         {
             headerIndex = 0;
             headerPage++;
-            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_ROOMS_ADDR, headerPage * sizeof(buffer), sizeof(buffer));
+            comboDmaLoadFilePartial(buffer, CUSTOM_MQ_ROOMS_VROM, headerPage * sizeof(buffer), sizeof(buffer));
         }
     }
 
@@ -312,7 +312,7 @@ static void loadMqSceneMaybe(GameState_Play* play)
         return;
 
     /* Load the MQ scene data */
-    comboDmaLoadFilePartial(sMqBufferScene, CUSTOM_MQ_SCENES_ADDR, mqHeader.offset, mqHeader.size);
+    comboDmaLoadFilePartial(sMqBufferScene, CUSTOM_MQ_SCENES_VROM, mqHeader.offset, mqHeader.size);
 
     /* Patch the scene */
     parseEnd = 0;
@@ -374,7 +374,7 @@ static void loadMqRoomMaybe(GameState_Play* play)
         return;
 
     /* Load the MQ room data */
-    comboDmaLoadFilePartial(sMqBufferRoomPtr, CUSTOM_MQ_ROOMS_ADDR, mqHeader.offset, mqHeader.size);
+    comboDmaLoadFilePartial(sMqBufferRoomPtr, CUSTOM_MQ_ROOMS_VROM, mqHeader.offset, mqHeader.size);
 
     /* Patch the room */
     parseEnd = 0;
@@ -468,7 +468,7 @@ void comboMqKaleidoHook(GameState_Play* play)
 
     /* Load the alternate maps */
     maps = OverlayAddr(0x8082a3e0);
-    comboDmaLoadFile(maps, CUSTOM_MQ_MAPS_ADDR);
+    comboDmaLoadFile(maps, CUSTOM_MQ_MAPS_VROM);
 
     /* Patch the vertex buffer */
     for (int i = 0; i < kMapCount; ++i)
@@ -507,7 +507,7 @@ static void LoadMapMarkWrapper(void* unk)
     /* Load the minimap */
     while (minimapSize)
     {
-        comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_ADDR, minimapOffset, sizeof(buffer));
+        comboDmaLoadFilePartial(buffer, CUSTOM_MQ_SCENES_VROM, minimapOffset, sizeof(buffer));
         size = sizeof(buffer);
         if (size > minimapSize)
             size = minimapSize;

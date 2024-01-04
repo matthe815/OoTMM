@@ -189,7 +189,7 @@
 - { id: OOT_COMPASS_IC, add: [OOT_COMPASS, SCE_OOT_ICE_CAVERN], flags: 0x80, draw: COMPASS, object: [oot, 0x00b8], name: "the <C0>Compass (Ice)" }
 - { id: OOT_WALLET, add: [OOT_WALLET, 1], flags: 0x80, draw: WALLET, object: [oot, 0x00d1], name: "the <C1>Child's Wallet" }
 - { id: OOT_WALLET4, add: [OOT_WALLET, 4], flags: 0x80, draw: WALLET4, object: [oot, 0x00d1], name: "the <C1>Colossal Wallet" }
-- { id: OOT_TRIFORCE, add: TRIFORCE, flags: 0x80, draw: TRIFORCE, object: TRIFORCE, name: "a <C3>Triforce Piece" }
+- { id: OOT_TRIFORCE, add: TRIFORCE, flags: 0x80, draw: TRIFORCE, object: OBJECTS_TRIFORCE, name: "a <C3>Triforce Piece" }
 - { id: OOT_WALLET5, add: [OOT_WALLET, 5], flags: 0x80, draw: WALLET5, object: [oot, 0x00d1], name: "the <C1>Bottomless Wallet" }
 - { id: OOT_RUPEE_SILVER_DC, add: [SILVER_RUPEE, SR_DC], flags: 0x80, draw: OOT_RUPEE_SILVER, name: "a <C1>Silver Rupee (DC)" }
 - { id: OOT_RUPEE_SILVER_BOTW, add: [SILVER_RUPEE, SR_BOTW], flags: 0x80, draw: OOT_RUPEE_SILVER, name: "a <C1>Silver Rupee (Well)" }
@@ -277,9 +277,9 @@
 - { id: OOT_COIN_GREEN, add: [COIN, 1], flags: 0x80, draw: COIN_GREEN, object: [oot, 0x012e], name: "a <C1>Green Coin" }
 - { id: OOT_COIN_BLUE, add: [COIN, 2], flags: 0x80, draw: COIN_BLUE, object: [oot, 0x012e], name: "a <C1>Blue Coin" }
 - { id: OOT_COIN_YELLOW, add: [COIN, 3], flags: 0x80, draw: COIN_YELLOW, object: [oot, 0x012e], name: "a <C1>Yellow Coin" }
-- { id: OOT_TRIFORCE_POWER, add: TRIFORCE, flags: 0x80, draw: [TRIFORCE, 0x01], object: TRIFORCE, name: "the <C3>Triforce of Power" }
-- { id: OOT_TRIFORCE_COURAGE, add: TRIFORCE, flags: 0x80, draw: [TRIFORCE, 0x02], object: TRIFORCE, name: "the <C3>Triforce of Courage" }
-- { id: OOT_TRIFORCE_WISDOM, add: TRIFORCE, flags: 0x80, draw: [TRIFORCE, 0x03], object: TRIFORCE, name: "the <C3>Triforce of Wisdom" }
+- { id: OOT_TRIFORCE_POWER, add: TRIFORCE, flags: 0x80, draw: [TRIFORCE, 0x01], object: OBJECTS_TRIFORCE, name: "the <C3>Triforce of Power" }
+- { id: OOT_TRIFORCE_COURAGE, add: TRIFORCE, flags: 0x80, draw: [TRIFORCE, 0x02], object: OBJECTS_TRIFORCE, name: "the <C3>Triforce of Courage" }
+- { id: OOT_TRIFORCE_WISDOM, add: TRIFORCE, flags: 0x80, draw: [TRIFORCE, 0x03], object: OBJECTS_TRIFORCE, name: "the <C3>Triforce of Wisdom" }
 - { id: OOT_POUCH_SILVER_DC, add: [SILVER_POUCH, SR_DC], flags: 0x80, draw: OOT_SILVER_POUCH, object: [oot, 0x00d1], name: "the <C1>Silver Pouch (DC)" }
 - { id: OOT_POUCH_SILVER_BOTW, add: [SILVER_POUCH, SR_BOTW], flags: 0x80, draw: OOT_SILVER_POUCH, object: [oot, 0x00d1], name: "the <C1>Silver Pouch (Well)" }
 - { id: OOT_POUCH_SILVER_SPIRIT_CHILD, add: [SILVER_POUCH, SR_SPIRIT1], flags: 0x80, draw: OOT_SILVER_POUCH, object: [oot, 0x00d1], name: "the <C1>Silver Pouch (Spirit Child)" }
@@ -303,11 +303,11 @@
 - { id: OOT_POUCH_SILVER_GANON_SHADOW, add: [SILVER_POUCH, SR_GANON1], flags: 0x80, draw: OOT_SILVER_POUCH, object: [oot, 0x00d1], name: "the <C1>Silver Pouch (Ganon Shadow)" }
 - { id: OOT_POUCH_SILVER_GANON_WATER, add: [SILVER_POUCH, SR_GANON2], flags: 0x80, draw: OOT_SILVER_POUCH, object: [oot, 0x00d1], name: "the <C1>Silver Pouch (Ganon Water)" }
 - { id: OOT_RUPEE_MAGICAL, add: MAGICAL_RUPEE, flags: 0x80, draw: OOT_RUPEE_MAGICAL, name: "the <C1>Magical Rupee" }
-- { id: OOT_BUTTON_A, add: [OOT_BUTTON, 0], flags: 0x80, draw: BUTTON_A, object: BTN_A, name: "the <C1>A Button" }
-- { id: OOT_BUTTON_C_RIGHT, add: [OOT_BUTTON, 1], flags: 0x80, draw: BUTTON_C_RIGHT, object: BTN_C_HORIZONTAL, name: "the <C1>C-Right Button" }
-- { id: OOT_BUTTON_C_LEFT, add: [OOT_BUTTON, 2], flags: 0x80, draw: BUTTON_C_LEFT, object: BTN_C_HORIZONTAL, name: "the <C1>C-Left Button" }
-- { id: OOT_BUTTON_C_UP, add: [OOT_BUTTON, 3], flags: 0x80, draw: BUTTON_C_UP, object: BTN_C_VERTICAL, name: "the <C1>C-Up Button" }
-- { id: OOT_BUTTON_C_DOWN, add: [OOT_BUTTON, 4], flags: 0x80, draw: BUTTON_C_DOWN, object: BTN_C_VERTICAL, name: "the <C1>C-Down Button" }
+- { id: OOT_BUTTON_A, add: [OOT_BUTTON, 0], flags: 0x80, draw: BUTTON_A, object: OBJECTS_BTN_A, name: "the <C1>A Button" }
+- { id: OOT_BUTTON_C_RIGHT, add: [OOT_BUTTON, 1], flags: 0x80, draw: BUTTON_C_RIGHT, object: OBJECTS_BTN_C_HORIZONTAL, name: "the <C1>C-Right Button" }
+- { id: OOT_BUTTON_C_LEFT, add: [OOT_BUTTON, 2], flags: 0x80, draw: BUTTON_C_LEFT, object: OBJECTS_BTN_C_HORIZONTAL, name: "the <C1>C-Left Button" }
+- { id: OOT_BUTTON_C_UP, add: [OOT_BUTTON, 3], flags: 0x80, draw: BUTTON_C_UP, object: OBJECTS_BTN_C_VERTICAL, name: "the <C1>C-Up Button" }
+- { id: OOT_BUTTON_C_DOWN, add: [OOT_BUTTON, 4], flags: 0x80, draw: BUTTON_C_DOWN, object: OBJECTS_BTN_C_VERTICAL, name: "the <C1>C-Down Button" }
 - { id: OOT_SMALL_KEY_TCG, add: [OOT_SMALL_KEY, SCE_OOT_TREASURE_SHOP], flags: 0x80, draw: SMALL_KEY, object: [oot, 0x00aa], name: "a <C0>Small Key (Chest Game)" }
 - { id: OOT_KEY_RING_TCG, add: [OOT_KEY_RING, SCE_OOT_TREASURE_SHOP], flags: 0x80, draw: SMALL_KEY, object: [oot, 0x00aa], name: "the <C0>Key Ring (Chest Game)" }
 - { id: OOT_SOUL_NPC_SARIA, add: [OOT_SOUL, 0x2000], flags: 0x80, draw: SOUL_NPC, object: [oot, 0x015c], name: "the <C1>Soul of Saria" }
@@ -635,11 +635,11 @@
 - { id: MM_KEY_RING_GB, add: [MM_KEY_RING, 2], flags: 0xa0, draw: SMALL_KEY, object: [mm, 0x0086], name: "the <C0>Key Ring (Great Bay)" }
 - { id: MM_KEY_RING_ST, add: [MM_KEY_RING, 3], flags: 0xa0, draw: SMALL_KEY, object: [mm, 0x0086], name: "the <C0>Key Ring (Stone Tower)" }
 - { id: MM_SKELETON_KEY, add: MM_SKELETON_KEY, flags: 0xa0, draw: SKELETON_KEY, object: [mm, 0x0086], name: "the <C1>Skeleton Key" }
-- { id: MM_BUTTON_A, add: [MM_BUTTON, 0], flags: 0xa0, draw: BUTTON_A, object: BTN_A, name: "the <C1>A Button" }
-- { id: MM_BUTTON_C_RIGHT, add: [MM_BUTTON, 1], flags: 0xa0, draw: BUTTON_C_RIGHT, object: BTN_C_HORIZONTAL, name: "the <C1>C-Right Button" }
-- { id: MM_BUTTON_C_LEFT, add: [MM_BUTTON, 2], flags: 0xa0, draw: BUTTON_C_LEFT, object: BTN_C_HORIZONTAL, name: "the <C1>C-Left Button" }
-- { id: MM_BUTTON_C_UP, add: [MM_BUTTON, 3], flags: 0xa0, draw: BUTTON_C_UP, object: BTN_C_VERTICAL, name: "the <C1>C-Up Button" }
-- { id: MM_BUTTON_C_DOWN, add: [MM_BUTTON, 4], flags: 0xa0, draw: BUTTON_C_DOWN, object: BTN_C_VERTICAL, name: "the <C1>C-Down Button" }
+- { id: MM_BUTTON_A, add: [MM_BUTTON, 0], flags: 0xa0, draw: BUTTON_A, object: OBJECTS_BTN_A, name: "the <C1>A Button" }
+- { id: MM_BUTTON_C_RIGHT, add: [MM_BUTTON, 1], flags: 0xa0, draw: BUTTON_C_RIGHT, object: OBJECTS_BTN_C_HORIZONTAL, name: "the <C1>C-Right Button" }
+- { id: MM_BUTTON_C_LEFT, add: [MM_BUTTON, 2], flags: 0xa0, draw: BUTTON_C_LEFT, object: OBJECTS_BTN_C_HORIZONTAL, name: "the <C1>C-Left Button" }
+- { id: MM_BUTTON_C_UP, add: [MM_BUTTON, 3], flags: 0xa0, draw: BUTTON_C_UP, object: OBJECTS_BTN_C_VERTICAL, name: "the <C1>C-Up Button" }
+- { id: MM_BUTTON_C_DOWN, add: [MM_BUTTON, 4], flags: 0xa0, draw: BUTTON_C_DOWN, object: OBJECTS_BTN_C_VERTICAL, name: "the <C1>C-Down Button" }
 - { id: MM_BOTTLE_POTION_GREEN, item: MM_POTION_GREEN, add: MM_BOTTLE_NEW, flags: 0xa0, draw: [BOTTLE_POTION, 0x01], object: [mm, 0x0196], name: "a <C1>bottle of Green Potion" }
 - { id: MM_BOTTLE_POTION_BLUE, item: MM_POTION_BLUE, add: MM_BOTTLE_NEW, flags: 0xa0, draw: [BOTTLE_POTION, 0x02], object: [mm, 0x0196], name: "a <C1>bottle of Blue Potion" }
 - { id: MM_BOTTLE_FAIRY, item: MM_FAIRY, add: MM_BOTTLE_NEW, flags: 0x80, draw: [MM_BOTTLE_FAIRY, 0], object: [mm, 0x0272], name:  "a <C1>bottled Fairy" }

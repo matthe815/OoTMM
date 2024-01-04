@@ -1,8 +1,7 @@
-import { Options } from "../../generator/lib/combo/options";
-import { png } from "../../generator/lib/combo/util/png";
+import { png } from './png';
 
-export const font = async (opts: Options, filename: string) => {
-  const original = await png(opts, filename, 'i4');
+export const font = async (filename: string) => {
+  const original = await png(filename, 'i4');
   const newBuffer = Buffer.alloc(original.byteLength);
   const indexMax = original.byteLength / ((8 * 12) / 2);
 

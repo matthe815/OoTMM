@@ -4,13 +4,11 @@ import { PATCH_GROUP_VALUES, CONFVARS_VALUES, PRICE_RANGES, GI, DRAWGI, CodeGen 
 import { ENTRANCES, NPC, SCENES } from '@ootmm/data';
 
 const codegenFile = async (data: {[k: string]: number}, prefix: string, filename: string, guard: string) => {
-  if (!process.env.ROLLUP) {
-    const cg = new CodeGen(path.resolve('build', 'include', 'combo', filename), guard);
-    for (const [k, v] of Object.entries(data)) {
-      cg.define(prefix + "_" + k, v);
-    }
-    await cg.emit();
+  const cg = new CodeGen(path.resolve(__dirname, '..', 'build', 'include', 'combo', filename), guard);
+  for (const [k, v] of Object.entries(data)) {
+    cg.define(prefix + "_" + k, v);
   }
+  await cg.emit();
 };
 
 /* Split on <> tags and extract the inner macro */
@@ -58,7 +56,7 @@ async function genGI() {
       fields.push('0x0000');
     } else {
       if (gi.object.type === 'custom') {
-        fields.push(`CUSTOM_OBJECT_ID_${gi.object.id}`);
+        fields.push(`CUSTOM_${gi.object.id}_OBJECT_ID`);
       } else {
         fields.push(`OBJECT_${gi.object.type.toUpperCase()}(0x${gi.object.id.toString(16)})`);
       }
@@ -113,7 +111,15 @@ async function genCustom() {
   const cg = new CodeGen(path.resolve('build', 'include', 'combo', 'custom.h'), "GENERATED_CUSTOM_H");
   for (const f of data.files) {
     const { defineBase } = f;
-    cg.define(defineBase + '_VROM', f.vrom);
+    cg.define('CUSTOM_' + defineBase + '_VROM', f.vrom);
+    if (f.objectId) {
+      cg.define('CUSTOM_' + defineBase + '_OBJECT_ID', f.objectId);
+    }
+    if (f.defineExtras) {
+      for (const [def, value] of Object.entries(f.defineExtras)) {
+        cg.define('CUSTOM_' + defineBase + '_' + def, value as number);
+      }
+    }
   }
   await cg.emit();
 }

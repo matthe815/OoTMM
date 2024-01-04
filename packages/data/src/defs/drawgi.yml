@@ -188,7 +188,7 @@
 - { id: MILK, func: CustomPotion, params: [3] }
 - { id: MM_CHATEAU, func: CustomPotion, params: [4] }
 - { id: MM_OWL, func: CustomOwl, params: [0x6003770] }
-- { id: TRIFORCE, func: Triforce, params: [TRIFORCE_0] }
+- { id: TRIFORCE, func: Triforce, params: [OBJECTS_TRIFORCE_0] }
 - { id: OOT_RUPEE_SILVER, func: SilverRupee, params: [0] }
 - { id: SOUL, func: CustomGS, params: [3] }
 - { id: SKELETON_KEY, func: CustomSmallKey, params: [0x6000800, 1] }
@@ -204,9 +204,9 @@
 - { id: WALLET5, func: Wallet, params: [0x6001850, 1, 0x60017f0, 0x60019a0, 0x6001810, 0x6001a28, 4, 0x6001ad8] }
 - { id: OOT_SILVER_POUCH, func: Wallet, params: [0x6001850, 2, 0x6001790, 0x60019a0, 0x60017b0, 0x6001a28, 4, 0x6001ad8] }
 - { id: OOT_RUPEE_MAGICAL, func: MagicalRupee, params: [0] }
-- { id: BUTTON_A, func: Button, params: [0, 0, BTN_A_0] }
-- { id: BUTTON_C_RIGHT, func: Button, params: [1, 0, BTN_C_HORIZONTAL_0] }
-- { id: BUTTON_C_LEFT, func: Button, params: [1, 1, BTN_C_HORIZONTAL_0] }
-- { id: BUTTON_C_UP, func: Button, params: [1, 0, BTN_C_VERTICAL_0] }
-- { id: BUTTON_C_DOWN, func: Button, params: [1, 1, BTN_C_VERTICAL_0] }
+- { id: BUTTON_A, func: Button, params: [0, 0, OBJECTS_BTN_A_0] }
+- { id: BUTTON_C_RIGHT, func: Button, params: [1, 0, OBJECTS_BTN_C_HORIZONTAL_0] }
+- { id: BUTTON_C_LEFT, func: Button, params: [1, 1, OBJECTS_BTN_C_HORIZONTAL_0] }
+- { id: BUTTON_C_UP, func: Button, params: [1, 0, OBJECTS_BTN_C_VERTICAL_0] }
+- { id: BUTTON_C_DOWN, func: Button, params: [1, 1, OBJECTS_BTN_C_VERTICAL_0] }
 - { id: SOUL_NPC, func: CustomGS, params: [5] }

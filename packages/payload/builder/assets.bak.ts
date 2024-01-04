@@ -10,9 +10,9 @@ import { arrayToIndexMap, toU32Buffer } from '../../generator/lib/combo/util';
 import { CodeGen } from '@ootmm/core/src/codegen';
 import { DecompressedRoms } from '@ootmm/core/src/decompress';
 import { Monitor } from '@ootmm/core/src/monitor';
-import { KeepFile } from './custom/keep';
+import { KeepFile } from './keep';
 import { png } from './png';
-import { font } from './custom/font';
+import { font } from './font';
 import { raw } from './custom/raw';
 import { Options } from '../../generator/lib/combo/options';
 import { Patchfile } from '../../generator/lib/combo/patch-build/patchfile';
@@ -111,8 +111,8 @@ export const customFiles = async (opts: Options): Promise<{[k: string]: Buffer}>
 });
 
 export const customAssetsKeep = async (opts: Options): Promise<{[k: string]: Buffer}> => ({
-  DPAD: await png(opts, 'dpad', 'rgba32'),
   FONT: await font(opts, 'font_8x12'),
+  DPAD: await png(opts, 'dpad', 'rgba32'),
   SMALL_ICON_KEY: await png(opts, 'small_icon_key', 'rgba32'),
   SMALL_ICON_BOSS_KEY: await png(opts, 'small_icon_boss_key', 'rgba32'),
   SMALL_ICON_MAP: await png(opts, 'small_icon_map', 'rgba32'),
@@ -247,6 +247,7 @@ class CustomAssetsBuilder {
     await this.addFile('MQ_ROOMS', 'mq_rooms.bin', false);
     await this.addFile('MQ_SCENES', 'mq_scenes.bin', false);
     await this.addFile('MQ_MAPS', 'mq_maps.bin', true);
+
     await this.addFile('XFLAG_TABLE_OOT_SCENES', 'xflag_table_oot_scenes.bin', false);
     await this.addFile('XFLAG_TABLE_OOT_SETUPS', 'xflag_table_oot_setups.bin', false);
     await this.addFile('XFLAG_TABLE_OOT_ROOMS',  'xflag_table_oot_rooms.bin', false);
